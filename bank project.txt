@@ -1,0 +1,167 @@
+#include<iostream>
+#include<stdio.h>
+#include<conio.h>
+#include <string>
+
+using namespace std;
+
+class bank {
+    public:
+   string name, address; //NOT working the getline() function.
+  //char name[50], address[100];
+    char y,gender,del;
+    int balance=0;
+
+    void account_open();
+    void deposite();
+    void Withdraw();
+    void display();
+    void delete_account();
+};
+
+void bank :: account_open(){
+    cout <<"Enter your name: "<<endl;
+    cin.ignore();
+    getline(cin,name); //Not working
+    
+   // cin.getline(name,50);
+    cout<<"\nWhat is your gender 'M' for Male and 'F' for Female"<<endl;
+    cin>>gender;
+    cout<<"\nEnter Your Address: "<<endl;
+    cin.ignore();
+   getline(cin,address); //NOT working;
+  
+    //cin.getline(address,100);
+    cout<<"\nSelect Type of Your Acoount 'S' for Savings and 'C' for Current: "<<endl;
+    cin>>y;
+    cout<<"\nEnter Your Initial balance: "<<endl;
+    cin>>balance;
+
+    if (gender=='M'||gender=='m' )
+    cout<<"\nCongratulation, Mr. "<<name<<" your account is succesfully created. Thank you for banking with us"<<endl;
+    else if (gender=='F'||gender=='f' )
+    cout<<"\nCongratulation, Miss. "<<name<<" your account is succesfully created. Thank you for banking with us"<<endl;
+}
+
+void bank :: deposite()
+{
+    int a=0;
+    cout<<"\nEmter the amount you want to deposite: "<<endl;
+    cin>>a;
+    balance += a;
+    cout<<"\nYour New balance is: "<<balance<<endl;
+    
+}
+
+void bank :: Withdraw()
+{
+    float b=0;
+    cout<<"\n What amount you want to withdraw? "<<endl;
+    cin>>b;
+    balance-=b;
+    cout<<"\nYour New balance is : "<<balance<<endl;
+}
+
+void bank :: display()
+{
+    cout<<" \n Your Account Details are as follows: "<<endl;
+    cout<<"\nName: "<<name<<endl;
+    cout<<"Gender: "<<gender<<endl;
+    cout<<"Address: "<<address<<endl;
+    cout<<"Balance: "<<balance<<endl;
+    if(y=='S'||y=='s')
+    {
+        cout<<"Account Type: Savings"<<endl;
+    }
+
+    else if(y=='C'||y=='c')
+    {
+        cout<<"Account Type: Current"<<endl;
+    }
+    else{
+        cout<<"Account Type : Account Not found"<<endl;
+    }
+}
+
+void bank :: delete_account()
+{
+    cout<<"\n Are you sure you want to delete your account? if yes Press 'Y' if no press 'N'."<<endl;
+    cin>>del;
+    if (del=='Y'||del=='y')
+    {
+      // name.clear();
+      name="May be Account is Deleted ";
+        balance=0000;
+       // address.clear();
+       address="May be Account is Deleted";
+        gender='n';
+        y='n';
+        cout<<"\nYour account is deleted succesfully. We will Miss you :("<<endl;
+    }
+    else if(del=='N'||del=='n')
+    {
+        cout<<"\nAccount Deletion Terminated. \nThanks for giving us one more chance <3 "<<endl;
+    }
+}
+
+int main()
+{
+    int a;
+    char x;
+    bank obj;
+    do {
+    cout<<"\n \nMenu: "<<endl;
+    cout<<" # Press '1' for Account Opening. "<<endl;
+    cout<<" # Press '2' for Money Deposite. "<<endl;
+    cout<<" # Press '3' for Withdrawal. "<<endl;
+    cout<<" # Press '4' for Display Details. "<<endl;
+    cout<<" # Press '5' for Account Detele :( "<<endl;
+    cin>>a;
+
+    
+    switch(a)
+    {
+        case 1: obj.account_open();
+        break;
+
+        case 2: obj.deposite();
+        break;
+
+        case 3: obj.Withdraw();
+        break;
+
+        case 4: obj.display();
+        break;
+
+        case 5: obj.delete_account();
+        break;
+
+        case 6:
+        if (a==6)
+        {exit(1);}
+
+        default :
+        cout<<"Inavlide Input please refer to menu and choose provide correct input. Thank You!"<<endl;
+        break;
+
+    }
+    cout<<"\n Do you want to choose new option? \n If yes then press'Y', \n if you want to exit press 'N'. "<<endl;
+    cin>>x;
+    if(x=='n'||x=='N')
+    {exit(0);}
+
+    else if(x!='n'&&x!='N'&x!='y'&&x!='Y')
+    {
+        cout<<"Invalid Input Please Choose wisely"<<endl;
+        cin>>x;
+         if(x=='n'||x=='N')
+    {exit(0);}
+    } 
+
+}
+    while (x=='y'||x=='Y');
+
+    getch();
+    return 0;
+
+}
